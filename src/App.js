@@ -1,18 +1,20 @@
-import React, { useState } from 'react'
-import Header from './components/Header'
-import Main from './components/Main'
-import Login from './components/Login'
-import './style.scss'
+import React, { useState, createContext } from "react";
+import Header from "./components/Header";
+import Main from "./components/Main";
+import Login from "./components/Login";
+import "./style.scss";
+
+export const AppContext = createContext()
 
 function App() {
-  const [username, setUsername] = useState(false)
+  const [activeUsername, setActiveUsername] = useState(false);
 
   return (
-    <>
+    <AppContext.Provider value={ {activeUsername} }>
       <Header />
-      {username ? <Main /> : <Login />}
-    </>
-  )
+      {activeUsername ? <Main /> : <Login setActiveUsername={setActiveUsername} />}
+    </AppContext.Provider>
+  );
 }
 
-export default App
+export default App;
