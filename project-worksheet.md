@@ -65,6 +65,11 @@ Unless otherwise noted, time is listed in hours:
 | Set up password encryption and authentication | H | 4 | 4 | 4 |
 | Create QueueItem (Post) displaying user, message, video | H | 2 |  |  |
 | Make QueueItem look nice | H | 2 |  |  |
+|  | H |  |  |  |
+|  | H |  |  |  |
+|  | H |  |  |  |
+|  | H |  |  |  |
+|  | H |  |  |  |
 | Additional styling | L | 4 |  |  |
 | Animation | L | 4 |  |  |
 | Total | - |  |  |  |
