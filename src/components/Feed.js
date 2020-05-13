@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react"
 
 function Feed() {
-  return (
-    <>
-
-    </>
-  )
+  return <></>
 }
 
 export default Feed

@@ -1,21 +1,21 @@
-import React, { useState, useContext } from "react";
-import { AppContext } from "../../App";
-import { Form, FormGroup, Label, Input, Button } from "reactstrap";
-import { Link } from "react-router-dom";
-import bcrypt from "bcryptjs";
-import { getUserByUsername } from "../../services/api-helper";
+import React, { useState, useContext } from "react"
+import { AppContext } from "../../App"
+import { Form, FormGroup, Label, Input, Button } from "reactstrap"
+import { Link } from "react-router-dom"
+import bcrypt from "bcryptjs"
+import { getUserByUsername } from "../../services/api-helper"
 
 function Login() {
-  const app = useContext(AppContext);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const app = useContext(AppContext)
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const user = await getUserByUsername(username);
+    e.preventDefault()
+    const user = await getUserByUsername(username)
     bcrypt.compare(password, user.password, function (err, res) {
-      res ? app.setActiveUsername(username) : setPassword('')
-    });
+      res ? app.setActiveUsername(username) : setPassword("")
+    })
   }
 
   return (
@@ -53,4 +53,4 @@ function Login() {
   )
 }
 
-export default Login;
+export default Login

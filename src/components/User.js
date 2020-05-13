@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react"
 
 function User() {
-  return (
-    <>
-
-    </>
-  )
+  return <></>
 }
 
 export default User
