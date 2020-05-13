@@ -48,22 +48,28 @@ Unless otherwise noted, time is listed in hours:
 
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-| Create back end file structure | H | .5 |  |  |
-| Create models for User and Post | H | 1 |  |  |
-| Set up CRUD for Users (sans authentication) | H | 2 |  |  |
-| Set up connections for local testing, test with Postman | H | 1 |  |  |
-| Set up CRUD for Post | H | 2 |  |  |
-| Test with Postman | H | .5 |  |  |
-| Configure for deployment on Heroku | H | .5 | |
-| Set up MongoDB Atlas server & and deploy db on Heroku | H | .5 | |
+| Create back end file structure | H | .5 | .5 | .5 |
+| Create models for User and Post | H | 1 | 1 | 1 |
+| Set up CRUD for Users | H | 2 | 1 | 1 |
+| Set up connections for local testing, test with Postman | H | 1 | .5 | .5 |
+| Set up CRUD for Post | H | 2 | 1 | 1 |
+| Test with Postman | H | .5 | .5 | .5 |
+| Configure for deployment on Heroku | H | .5 |  |  |
+| Set up MongoDB Atlas server & and deploy db on Heroku | H | .5 |  |  |
 | Create React app and files for all components | H | 1 |  |  |
-| API-helper file for front end | H | 1 |  |  |
+| API-helper file for front end | H | 1 | 1 | 1 |
 | Reactstrap Navbar | H | .5 |  |  |
 | Set up Main with basic React routing | H | .5 |  |  |
-| Set up login (sans authentication)
-
-
-| Set up authentication for User on back end | H | 4 |  |
+| Create functional login form | H | 1 | 1.5 | 1.5 |
+| Create functional signup form | H | 1 |  |  |
+| Set up password encryption and authentication | H | 4 | 4 | 4 |
+| Create QueueItem (Post) displaying user, message, video | H | 2 |  |  |
+| Make QueueItem look nice | H | 2 |  |  |
+|  | H |  |  |  |
+|  | H |  |  |  |
+|  | H |  |  |  |
+|  | H |  |  |  |
+|  | H |  |  |  |
 | Additional styling | L | 4 |  |  |
 | Animation | L | 4 |  |  |
 | Total | - |  |  |  |
