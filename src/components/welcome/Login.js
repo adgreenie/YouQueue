@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AppContext } from "../../App";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { Link } from "react-router-dom";
 import bcrypt from "bcryptjs";
-import { getUserByUsername } from "../services/api-helper";
+import { getUserByUsername } from "../../services/api-helper";
 
-function Login(props) {
+function Login() {
+  const app = useContext(AppContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -11,9 +14,9 @@ function Login(props) {
     e.preventDefault();
     const user = await getUserByUsername(username);
     bcrypt.compare(password, user.password, function (err, res) {
-      res ? props.setActiveUsername(username) : setPassword('')
+      res ? app.setActiveUsername(username) : setPassword('')
     });
-  };
+  }
 
   return (
     <Form className="login" onSubmit={handleSubmit}>
@@ -42,9 +45,12 @@ function Login(props) {
           value={password}
         />
       </FormGroup>
-      <Button>Submit</Button>
+      <Button>Log In</Button>
+      <p>
+        Don't have an account? <Link to="/signup">Click here to sign up!</Link>
+      </p>
     </Form>
-  );
+  )
 }
 
 export default Login;
