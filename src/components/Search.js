@@ -1,7 +1,7 @@
 import React from "react"
 
 function Search() {
-  return <></>
+  return <>Search</>
 }
 
 export default Search

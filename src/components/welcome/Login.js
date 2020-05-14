@@ -14,12 +14,12 @@ function Login() {
     e.preventDefault()
     const user = await getUserByUsername(username)
     bcrypt.compare(password, user.password, function (err, res) {
-      res ? app.storeUsername(username) : setPassword("")
+      res ? app.storeUser(username) : setPassword("")
     })
   }
 
   return (
-    <Form className="login" onSubmit={handleSubmit}>
+    <Form className="yq-form" onSubmit={handleSubmit}>
       <FormGroup>
         <Label for="usernameBox" hidden>
           Username

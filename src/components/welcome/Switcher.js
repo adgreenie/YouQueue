@@ -6,7 +6,7 @@ import { Route, Switch, Redirect } from "react-router-dom"
 function Switcher() {
   return (
     <Switch>
-      <Route exact path="/login" component={Login} />
+      <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <Redirect to="/login" />
     </Switch>

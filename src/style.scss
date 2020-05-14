@@ -1,4 +1,35 @@
-.login {
+nav {
+  display: flex;
+  align-items: center;
+  background-color: black;
+
+  a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    transition: 0.3s;
+  }
+  a:hover {
+    color: #66a4df;
+    text-decoration: none;
+  }
+
+  .active {
+    color: #a0a0a0;
+  }
+
+  .title {
+    font-size: 2em;
+    padding: 0 10px;
+    margin-right: 10px;
+  }
+}
+
+main {
+  padding: 20px;
+}
+
+.yq-form {
   width: 300px;
   margin: 20px auto;
 

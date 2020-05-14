@@ -7,24 +7,29 @@ import "./style.scss"
 export const AppContext = createContext()
 
 function App() {
-  const [activeUsername, setActiveUsername] = useState(false)
+  const [activeUser, setActiveUser] = useState(false)
 
   useEffect(() => {
-    const storedUsername = localStorage.getItem("username")
-    if (storedUsername) {
-      setActiveUsername(storedUsername)
+    const storedUser = localStorage.getItem("username")
+    if (storedUser) {
+      setActiveUser(storedUser)
     }
   }, [])
 
-  const storeUsername = (username) => {
+  const storeUser = (username) => {
     localStorage.setItem("username", username)
-    setActiveUsername(username)
+    setActiveUser(username)
+  }
+
+  const logOut = () => {
+    localStorage.removeItem("username")
+    setActiveUser(false)
   }
 
   return (
-    <AppContext.Provider value={{ activeUsername, storeUsername }}>
+    <AppContext.Provider value={{ activeUser, storeUser, logOut }}>
       <Header />
-      {activeUsername ? <Main /> : <Switcher />}
+      {activeUser ? <Main /> : <Switcher />}
     </AppContext.Provider>
   )
 }

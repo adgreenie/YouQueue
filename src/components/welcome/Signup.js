@@ -37,12 +37,12 @@ function Signup() {
           password: hash,
         })
       })
-      app.storeUsername(username)
+      app.storeUser(username)
     }
   }
 
   return (
-    <Form className="login" onSubmit={handleSubmit}>
+    <Form className="yq-form" onSubmit={handleSubmit}>
       <FormGroup>
         <Label for="usernameBox" hidden>
           Username
