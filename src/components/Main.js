@@ -1,10 +1,8 @@
 import React from "react"
 import Home from "./Home"
-import MyPage from "./MyPage"
-import MyFriends from "./MyFriends"
-import Search from "./Search"
-import User from "./User"
+import Feed from "./Feed"
 import ShareForm from "./ShareForm"
+import Settings from "./Settings"
 import { Route, Switch, Redirect } from "react-router-dom"
 
 function Main() {
@@ -12,17 +10,9 @@ function Main() {
     <main>
       <Switch>
         <Route path="/home" component={Home} />
-        <Route path="/userpage" component={MyPage} />
-        <Route path="/friends" component={MyFriends} />
-        <Route path="/search" component={Search} />
-        <Route
-          path="/user/:username"
-          render={(routerProps) => <User {...routerProps} />}
-        />
-        <Route
-          path="/share/:username"
-          render={(routerProps) => <ShareForm {...routerProps} />}
-        />
+        <Route path="/feed" component={Feed} />
+        <Route path="/share" component={ShareForm} />
+        <Route path="/settings" component={Settings} />
         <Redirect to="/home" />
       </Switch>
     </main>

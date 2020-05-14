@@ -23,14 +23,14 @@ function Header(props) {
         <NavbarToggler id="toggler" onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="nav-list" navbar>
-            <Link className={handleActive("/userpage")} to="/userpage">
-              My Page
+            <Link className={handleActive("/feed")} to="/feed">
+              My Feed
             </Link>
-            <Link className={handleActive("/friends")} to="/friends">
-              My Friends
+            <Link className={handleActive("/share")} to="/share">
+              Share a Video
             </Link>
-            <Link className={handleActive("/search")} to="/search">
-              Search Users
+            <Link className={handleActive("/settings")} to="/settings">
+              Settings
             </Link>
           </Nav>
         </Collapse>

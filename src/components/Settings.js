@@ -1,10 +1,10 @@
 import React, { useContext } from "react"
 import { AppContext } from "../App"
 
-function MyPage() {
+function Settings() {
   const app = useContext(AppContext)
 
-  return <>{app.activeUser}'s Page</>
+  return <>{app.activeUser}'s Settings</>
 }
 
-export default MyPage
+export default Settings

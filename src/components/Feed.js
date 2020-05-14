@@ -1,7 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
+import { AppContext } from "../App"
 
 function Feed() {
-  return <></>
+  const app = useContext(AppContext)
+
+  return <>{app.activeUser}'s Feed</>
 }
 
 export default Feed

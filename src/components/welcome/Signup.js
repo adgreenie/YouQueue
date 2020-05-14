@@ -13,13 +13,14 @@ function Signup() {
   const [error, setError] = useState("")
 
   const checkValidity = async () => {
-    const isTaken = await getUsernameExists(username)
-    if (isTaken) {
+    if (username.length < 3 || username.length > 16) {
+      setError("Username must be 3-16 characters long")
+    } else if (!username.match(/^[0-9a-zA-Z]+$/)) {
+      setError("Username can only contain letters and numbers")
+    } else if (await getUsernameExists(username)) {
       setError("Username is taken...please select another")
-    } else if (username.length < 3) {
-      setError("Username must be at least 3 characters long")
-    } else if (password.length < 5) {
-      setError("Password must be at least 5 characters long")
+    } else if (password.length < 5 || password.length > 18) {
+      setError("Password must be 5-18 characters long")
     } else if (password !== confirm) {
       setError("Passwords do not match")
     } else {
@@ -51,7 +52,7 @@ function Signup() {
           type="text"
           name="username"
           id="usernameBox"
-          placeholder="username"
+          placeholder="Username"
           onChange={(e) => setUsername(e.target.value)}
         />
       </FormGroup>
@@ -63,7 +64,7 @@ function Signup() {
           type="password"
           name="password"
           id="passwordBox"
-          placeholder="password"
+          placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
@@ -76,7 +77,7 @@ function Signup() {
           type="password"
           name="confirm"
           id="confirmBox"
-          placeholder="confirm password"
+          placeholder="Confirm Password"
           onChange={(e) => setConfirm(e.target.value)}
           value={confirm}
         />

@@ -15,7 +15,7 @@ function Login() {
     e.preventDefault()
     const user = await getUserByUsername(username)
     bcrypt.compare(password, user.password, function (err, res) {
-      res ? app.storeUser(username) : handleInvalid()
+      res ? app.storeUser(user.username) : handleInvalid()
     })
   }
 
@@ -34,7 +34,7 @@ function Login() {
           type="text"
           name="username"
           id="usernameBox"
-          placeholder="username"
+          placeholder="Username"
           onChange={(e) => setUsername(e.target.value)}
         />
       </FormGroup>
@@ -46,7 +46,7 @@ function Login() {
           type="password"
           name="password"
           id="passwordBox"
-          placeholder="password"
+          placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />

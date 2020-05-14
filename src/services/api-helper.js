@@ -1,7 +1,11 @@
 import axios from "axios"
 
 const api = axios.create({
-  baseURL: "http://127.0.0.1:8080/",
+  baseURL: "https://youqueue-back.herokuapp.com/",
+})
+
+const youTubeApi = axios.create({
+  baseURL: "https://www.youtube.com/",
 })
 
 // User functions
@@ -67,4 +71,15 @@ export const updatePost = async (id, post) => {
 export const deletePost = async (id) => {
   const resp = await api.delete(`/posts/id/${id}`)
   return resp.data
+}
+
+// YouTube URL check
+
+export const checkURL = async (url) => {
+  try {
+    await youTubeApi.get(`oembed?url=${url}`)
+  } catch {
+    return false
+  }
+  return true
 }
