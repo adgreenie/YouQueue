@@ -9,13 +9,19 @@ function Login() {
   const app = useContext(AppContext)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  const [isInvalid, setIsInvalid] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     const user = await getUserByUsername(username)
     bcrypt.compare(password, user.password, function (err, res) {
-      res ? app.storeUser(username) : setPassword("")
+      res ? app.storeUser(username) : handleInvalid()
     })
+  }
+
+  const handleInvalid = () => {
+    setIsInvalid(true)
+    setPassword("")
   }
 
   return (
@@ -46,6 +52,11 @@ function Login() {
         />
       </FormGroup>
       <Button>Log In</Button>
+      {isInvalid && (
+        <p style={{ color: "red" }}>
+          Invalid username and password combination
+        </p>
+      )}
       <p>
         Don't have an account? <Link to="/signup">Click here to sign up!</Link>
       </p>
