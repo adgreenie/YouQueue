@@ -37,7 +37,7 @@ function Signup() {
           password: hash,
         })
       })
-      app.setActiveUsername(username)
+      app.storeUsername(username)
     }
   }
 

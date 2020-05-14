@@ -14,7 +14,7 @@ function Login() {
     e.preventDefault()
     const user = await getUserByUsername(username)
     bcrypt.compare(password, user.password, function (err, res) {
-      res ? app.setActiveUsername(username) : setPassword("")
+      res ? app.storeUsername(username) : setPassword("")
     })
   }
 

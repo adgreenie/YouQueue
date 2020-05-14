@@ -3,7 +3,7 @@ import Login from "./Login"
 import Signup from "./Signup"
 import { Route, Switch, Redirect } from "react-router-dom"
 
-function Welcome() {
+function Switcher() {
   return (
     <Switch>
       <Route exact path="/login" component={Login} />
@@ -13,4 +13,4 @@ function Welcome() {
   )
 }
 
-export default Welcome
+export default Switcher
