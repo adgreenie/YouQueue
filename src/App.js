@@ -2,6 +2,7 @@ import React, { useState, createContext, useEffect } from "react"
 import Header from "./components/Header"
 import Main from "./components/Main"
 import Switcher from "./components/welcome/Switcher"
+import { getUsernameExists } from "./services/api-helper"
 import "./style.scss"
 
 export const AppContext = createContext()
@@ -11,7 +12,15 @@ function App() {
 
   useEffect(() => {
     const storedUser = localStorage.getItem("username")
+
+    const checkUser = async (username) => {
+      ;(await getUsernameExists(username))
+        ? setActiveUser(username)
+        : setActiveUser(false)
+    }
+
     if (storedUser) {
+      checkUser(storedUser)
       setActiveUser(storedUser)
     }
   }, [])

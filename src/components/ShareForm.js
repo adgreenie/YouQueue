@@ -18,6 +18,9 @@ function ShareForm() {
     } else if (url.includes("v=") && (await checkURL(url))) {
       setVideoCode(url.split("v=")[1].split("&")[0])
       setVideoError("")
+    } else if (url.includes("youtu.be/") && (await checkURL(url))) {
+      setVideoCode(url.split(".be/")[1])
+      setVideoError("")
     } else {
       setVideoError("Invalid YouTube URL")
     }
