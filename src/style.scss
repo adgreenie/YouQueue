@@ -27,16 +27,17 @@ nav {
     color: #a0a0a0;
   }
 
-  .feed {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
   .title {
     font-size: 2em;
     padding: 0 10px;
     margin-right: 10px;
   }
+}
+
+.feed {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .queue-item {
