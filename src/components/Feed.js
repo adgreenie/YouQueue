@@ -3,14 +3,17 @@ import { AppContext } from "../App"
 import { Link } from "react-router-dom"
 import QueueItem from "./QueueItem"
 import { getPostsForUser } from "../services/api-helper"
+import GridLoader from "react-spinners/GridLoader"
 
 function Feed() {
   const app = useContext(AppContext)
   const [postArr, setPostArr] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const makeApiCall = async () => {
       setPostArr(await getPostsForUser(app.activeUser))
+      setIsLoading(false)
     }
     makeApiCall()
   }, [])
@@ -19,11 +22,17 @@ function Feed() {
     return <QueueItem key={i} post={post} />
   })
 
-  console.log(posts)
+  if (isLoading) {
+    return (
+      <div className="loading">
+        <GridLoader />
+      </div>
+    )
+  }
 
   return (
     <div className="feed">
-      {posts.length < 1 && (
+      {!isLoading && posts.length < 1 && (
         <>
           <h3>Crikey! Looks like your feed is empty...</h3>
           <Link to="/share">Share with friends and start your playlist!</Link>
