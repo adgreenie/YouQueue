@@ -10,6 +10,7 @@ function ShareForm() {
   const [message, setMessage] = useState("")
   const [recError, setRecError] = useState("")
   const [videoError, setVideoError] = useState("")
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
   const handleVideoURL = async (url) => {
     if (!url) {
@@ -35,16 +36,19 @@ function ShareForm() {
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     console.log("handling submit")
     e.preventDefault()
-    if (recipient && videoCode && !recError && !videoError) {
-      createPost({
+    if (recipient && videoCode && !recError && !videoError && !isSubmitted) {
+      setIsSubmitted(true)
+      await createPost({
         sender: app.activeUser,
         recipient: recipient,
         message: message,
         video: videoCode,
       })
+    } else {
+      setIsSubmitted(false)
     }
   }
 
