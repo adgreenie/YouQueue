@@ -39,7 +39,14 @@ function ShareForm() {
   const handleSubmit = async (e) => {
     console.log("handling submit")
     e.preventDefault()
-    if (recipient && videoCode && !recError && !videoError && !isSubmitted) {
+    if (
+      recipient &&
+      videoCode &&
+      !recError &&
+      !videoError &&
+      message.length < 51 &&
+      !isSubmitted
+    ) {
       setIsSubmitted(true)
       await createPost({
         sender: app.activeUser,
@@ -47,8 +54,7 @@ function ShareForm() {
         message: message,
         video: videoCode,
       })
-    } else {
-      setIsSubmitted(false)
+      window.location.reload()
     }
   }
 
@@ -102,9 +108,12 @@ function ShareForm() {
           type="textarea"
           name="message"
           id="messageBox"
-          placeholder="Message (optional)"
+          placeholder="Message (character limit 50)"
           onChange={(e) => setMessage(e.target.value)}
         />
+        <span style={{ color: message.length > 50 ? "red" : "green" }}>
+          {message.length}/50
+        </span>
       </FormGroup>
       <Button color="success">Send</Button>
     </Form>

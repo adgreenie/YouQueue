@@ -1,5 +1,5 @@
 h3 {
-  font-size: 1em !important;
+  font-size: 1.2em !important;
 }
 
 main {
@@ -42,7 +42,10 @@ nav {
 .queue-item {
   display: inline-block;
   margin: 10px;
+  padding: 10px 20px 0;
   text-align: center;
+  border: 2px solid black;
+  border-radius: 5px;
 }
 
 .settings {

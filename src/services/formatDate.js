@@ -1,7 +1,8 @@
 export const formatDate = (rawDate) => {
-  let hours = rawDate.getHours()
-  const minutes = rawDate.getMinutes()
-  const seconds = rawDate.getSeconds()
+  const date = new Date(rawDate)
+  let hours = date.getHours()
+  const minutes = date.getMinutes()
+  const seconds = date.getSeconds()
   const zero = seconds < 10 ? "0" : ""
   if (hours === 0 || hours === 12) {
     hours += 12
@@ -11,9 +12,9 @@ export const formatDate = (rawDate) => {
       ? `${hours}:${minutes}:${zero}${seconds} AM`
       : `${hours - 12}:${minutes}:${zero}${seconds} PM`
 
-  const date = `${
-    rawDate.getMonth() + 1
-  }/${rawDate.getDate()}/${rawDate.getFullYear()}`
+  const monthDayYear = `${
+    date.getMonth() + 1
+  }/${date.getDate()}/${date.getFullYear()}`
 
-  return [date, time]
+  return [monthDayYear, time]
 }
