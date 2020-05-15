@@ -3,11 +3,11 @@
 ## Project Links
 
 - https://github.com/adgreenie/YouQueue
-- [add your deployment link]()
+- https://p4-youqueue.web.app/
 
 ## Project Description
 
-We love sending media to our friends, but often these songs and videos get lost in long text chains. No longer! With this app, share YouTube content with a friend, and it will be added to their home feed and to a playlist of songs and videos just from you. Personalized messages can be included with each item shared. Users can modify their own playlists and favorite items they share or that have been shared with them.
+We love sending media to our friends, but often these songs and videos get lost in long text chains. No longer! With this app, share YouTube content with a friend, and it will be added to their feed and to yours. Personalized messages can be included with each item shared.
 
 ## API
 
