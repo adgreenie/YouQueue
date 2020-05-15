@@ -18,9 +18,12 @@ function Feed() {
     makeApiCall()
   }, [])
 
-  const posts = postArr.map((post, i) => {
-    return <QueueItem key={i} post={post} />
-  })
+  const posts = postArr
+    .slice(0)
+    .reverse()
+    .map((post, i) => {
+      return <QueueItem key={i} post={post} />
+    })
 
   if (isLoading) {
     return (

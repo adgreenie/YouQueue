@@ -28,16 +28,17 @@ Upload images of wireframe to cloudinary and add the link here with a descriptio
 The functionality will then be divided into two separate lists: MPV and PostMVP.  Carefully decided what is placed into your MVP as the client will expect this functionality to be implemented upon project completion.  
 
 #### MVP
-- User creation and authorization
-- Ability to add friends
-- Share and display YouTube videos and messages with friends
-- Watch and favorite shared posts
+- User creation and authentication/authorization
+- Password hashing for security
+- Share YouTube videos and messages with friends
+- Display playable videos and messages in feed
+- Ability to delete account and associated posts
 
 #### PostMVP
 
-- Upload profile picture directly (instead of URL)
+- Upload profile picture
 - Loading/posting/scrolling animations
-- Mutual friends list
+- Friend list
 
 
 ## Time Frame
