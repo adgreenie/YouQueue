@@ -17,7 +17,7 @@ function QueueItem({ post }) {
         style={{ margin: "0 auto" }}
         width="300"
         src={`https://www.youtube.com/embed/${post.video}?feature=oembed`}
-        frameborder="0"
+        frameBorder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"
       />
       <p>{post.message}</p>

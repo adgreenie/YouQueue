@@ -5,7 +5,7 @@ const api = axios.create({
 })
 
 const youTubeApi = axios.create({
-  baseURL: "https://www.youtube.com/",
+  baseURL: "https://cors-anywhere.herokuapp.com/https://www.youtube.com/",
 })
 
 // User functions
