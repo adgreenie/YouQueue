@@ -21,6 +21,9 @@ export const getUserByUsername = async (username) => {
 }
 
 export const getUsernameExists = async (username) => {
+  if (!username.match(/^[0-9a-zA-Z]+$/) || username.length < 3) {
+    return false
+  }
   const resp = await api.get(`/users/check/${username}`)
   return resp.data
 }
@@ -37,6 +40,7 @@ export const updateUser = async (username, user) => {
 
 export const deleteUser = async (username) => {
   const resp = await api.delete(`/users/username/${username}`)
+  console.log(resp.data)
   return resp.data
 }
 
@@ -47,7 +51,7 @@ export const getAllPosts = async () => {
   return resp.data
 }
 
-export const getPostsByUsername = async (username) => {
+export const getPostsForUser = async (username) => {
   const resp = await api.get(`/posts/username/${username}`)
   return resp.data
 }

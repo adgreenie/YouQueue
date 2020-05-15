@@ -3,7 +3,7 @@ import { AppContext } from "../../App"
 import { Form, FormGroup, Label, Input, Button } from "reactstrap"
 import { Link } from "react-router-dom"
 import bcrypt from "bcryptjs"
-import { getUserByUsername } from "../../services/api-helper"
+import { getUserByUsername, getUsernameExists } from "../../services/api-helper"
 
 function Login() {
   const app = useContext(AppContext)
@@ -13,10 +13,14 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const user = await getUserByUsername(username)
-    bcrypt.compare(password, user.password, function (err, res) {
-      res ? app.storeUser(user.username) : handleInvalid()
-    })
+    if (password && (await getUsernameExists(username))) {
+      const user = await getUserByUsername(username)
+      bcrypt.compare(password, user.password, function (err, res) {
+        res ? app.storeUser(user.username) : handleInvalid()
+      })
+    } else {
+      handleInvalid()
+    }
   }
 
   const handleInvalid = () => {
@@ -53,9 +57,7 @@ function Login() {
       </FormGroup>
       <Button>Log In</Button>
       {isInvalid && (
-        <p style={{ color: "red" }}>
-          Invalid username and password combination
-        </p>
+        <p className="error">Invalid username and password combination</p>
       )}
       <p>
         Don't have an account? <Link to="/signup">Click here to sign up!</Link>

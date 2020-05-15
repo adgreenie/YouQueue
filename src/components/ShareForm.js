@@ -2,60 +2,84 @@ import React, { useState, useContext } from "react"
 import { AppContext } from "../App"
 import { Link } from "react-router-dom"
 import { Form, FormGroup, Label, Input, Button } from "reactstrap"
-import { createPost, checkURL } from "../services/api-helper"
+import { getUsernameExists, createPost, checkURL } from "../services/api-helper"
 
 function ShareForm() {
   const app = useContext(AppContext)
   const [recipient, setRecipient] = useState("")
-  const [videoURL, setVideoURL] = useState("")
   const [videoCode, setVideoCode] = useState("")
   const [message, setMessage] = useState("")
-  const [error, setError] = useState("")
+  const [recError, setRecError] = useState("")
+  const [videoError, setVideoError] = useState("")
 
   const handleVideoURL = async (url) => {
-    if (url.includes("v=") && (await checkURL(url))) {
+    if (!url) {
+      setVideoError("")
+    } else if (url.includes("v=") && (await checkURL(url))) {
       setVideoCode(url.split("v=")[1].split("&")[0])
+      setVideoError("")
     } else {
-      console.log("invalid url")
+      setVideoError("Invalid YouTube URL")
     }
-    // var ampersandPosition = video_id.indexOf("&")
-    // if (ampersandPosition != -1) {
-    //   video_id = video_id.substring(0, ampersandPosition)
-    // }
   }
 
-  const checkValidity = async () => {
-    // check YouTube link
-    return true
+  const handleRecipient = async (rec) => {
+    setRecipient(rec)
+    console.log("recipient set")
+    if (!rec) {
+      setRecError("")
+    } else if (await getUsernameExists(rec)) {
+      setRecipient(rec)
+      setRecError("")
+    } else {
+      setRecError(`User "${rec}" not found`)
+    }
   }
 
   const handleSubmit = (e) => {
+    console.log("handling submit")
     e.preventDefault()
-    if (checkValidity()) {
-      // create Post
+    if (recipient && videoCode && !recError && !videoError) {
+      createPost({
+        sender: app.activeUser,
+        recipient: recipient,
+        message: message,
+        video: videoCode,
+      })
     }
   }
 
   return (
-    <Form className="yq-form" onSubmit={handleSubmit}>
+    <Form
+      className="yq-form"
+      id="share-form"
+      onSubmit={handleSubmit}
+      onKeyPress={(e) => {
+        e.key === "Enter" && e.preventDefault()
+      }}
+    >
       <FormGroup>
-        <Label for="recipientBox">Who would you like to share with?</Label>
+        <Label for="toBox">Who would you like to share with?</Label>
         <Input
           type="text"
-          name="username"
-          id="usernameBox"
+          name="recipient"
+          id="toBox"
           placeholder="Username"
-          onChange={(e) => setRecipient(e.target.value)}
+          onBlur={(e) => handleRecipient(e.target.value)}
         />
       </FormGroup>
+      <p className="error">{recError}</p>
       {videoCode ? (
-        <iframe
-          style={{ margin: "0 auto" }}
-          width="300"
-          src={`https://www.youtube.com/embed/${videoCode}?feature=oembed`}
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-        />
+        <>
+          <iframe
+            style={{ margin: "0 auto" }}
+            width="300"
+            src={`https://www.youtube.com/embed/${videoCode}?feature=oembed`}
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+          />
+          <Button onClick={() => setVideoCode("")}>Change Video</Button>
+        </>
       ) : (
         <FormGroup>
           <Label for="urlBox">Copy YouTube URL and paste it below:</Label>
@@ -68,6 +92,7 @@ function ShareForm() {
           />
         </FormGroup>
       )}
+      <p className="error">{videoError}</p>
       <FormGroup>
         <Label for="messageBox">Share a message with this video:</Label>
         <Input
@@ -78,8 +103,7 @@ function ShareForm() {
           onChange={(e) => setMessage(e.target.value)}
         />
       </FormGroup>
-      <Button>Send</Button>
-      <p style={{ color: "red" }}>{error}</p>
+      <Button color="success">Send</Button>
     </Form>
   )
 }
