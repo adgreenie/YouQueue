@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react"
 import { AppContext } from "../App"
-import { Link } from "react-router-dom"
 import { Form, FormGroup, Label, Input, Button } from "reactstrap"
 import { getUsernameExists, createPost, checkURL } from "../services/api-helper"
 
